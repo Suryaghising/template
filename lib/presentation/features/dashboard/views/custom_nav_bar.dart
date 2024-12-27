@@ -24,9 +24,9 @@ class _CustomNavbarState extends State<CustomNavbar> {
       decoration: BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(
           color: Colors.grey.shade200,
-          blurRadius: 4,
-          blurStyle: BlurStyle.solid,
-          offset: const Offset(0, -1),
+          blurRadius: 1,
+          blurStyle: BlurStyle.normal,
+          offset: const Offset(0, -3),
         )
       ]),
       child: Row(
