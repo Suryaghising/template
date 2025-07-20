@@ -38,9 +38,8 @@ Future<void> init() async {
   // external
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
-  sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton<NetworkInfo>(
-      () => NetworkInfoImpl(connectionChecker: sl()));
+      () => NetworkInfoImpl());
 
   // dio service
   sl.registerSingleton<DioInterceptor>(
