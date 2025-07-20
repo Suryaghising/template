@@ -48,26 +48,30 @@ Future<void> init() async {
   final dio = ConfiguredDio(dioInterceptor: sl<DioInterceptor>()).dio;
   sl.registerSingleton<Dio>(dio);
 
-  // bloc
+  // bloc starts
   sl.registerFactory(() => LoginCubit(loginUserUseCase: sl()));
   sl.registerFactory(() => SignupCubit(registerUserUsecase: sl()));
   sl.registerFactory(() => PasswordVisibilityCubit());
   sl.registerFactory(() => NavBarCubit());
   sl.registerFactory(() => SplashCubit(localStorageService: sl()));
+  // bloc ends
 
-  // use case
+  // use case starts
   sl.registerLazySingleton(() => LoginUserUseCase(authRepository: sl()));
   sl.registerLazySingleton(() => RegisterUserUsecase(authRepository: sl()));
+  // use case ends
 
-  // repository
+  // repository starts
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
       authLocalDataSource: sl(),
       authRemoteDataSource: sl(),
       networkHandler: sl()));
+  // repository ends
 
-  // data source
+  // data source starts
   sl.registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSourceImpl(dio: sl()));
   sl.registerLazySingleton<AuthLocalDataSource>(
       () => AuthLocalDataSourceImpl(localStorageService: sl()));
+  // data source ends
 }
